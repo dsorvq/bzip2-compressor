@@ -35,9 +35,7 @@ void CoderBWT::encode(std::istream& input, std::ostream& output) {
       put_uint32_t(i / 2, output);
       break;
     }
-    //std::cout << i << ':' << suffix_arr[i] << '\n';
   }
-  //put_uint32_t(3, output);
 
   for (int i = 0; i < n; ++i) {
     if (suffix_arr[i] < n / 2) {
@@ -46,40 +44,6 @@ void CoderBWT::encode(std::istream& input, std::ostream& output) {
   }
 }
 
-//void BWT::decode(std::istream &input, std::ostream &output)
-void CoderBWT::decode(std::istream& input, std::ostream& output) {
-    if (input.rdbuf()->in_avail()==0) {
-        output << "";
-
-        return;
-    }
-    uint32_t number = read_uint32_t(input);
-    std::vector<uint8_t> input_chars((std::istreambuf_iterator<char>(input)),
-                                     std::istreambuf_iterator<char>());
-    std::vector<size_t> chars_counter(256, 0);
-    for (size_t i = 0; i < input_chars.size(); i++) {
-        ++chars_counter[input_chars[i]];
-    }
-    size_t sum = 0;
-    for (size_t i = 0; i < chars_counter.size(); i++) {
-        sum += chars_counter[i];
-        chars_counter[i] = sum - chars_counter[i];
-    }
-    std::vector<size_t> reverse_indexes(input_chars.size());
-
-    for (size_t i = 0; i < input_chars.size(); i++) {
-        reverse_indexes[chars_counter[input_chars[i]]] = i;
-        ++chars_counter[input_chars[i]];
-    }
-    size_t j = reverse_indexes[number];
-    for (size_t i = 0; i < input_chars.size(); i++) {
-        output << input_chars[j];
-
-        j = reverse_indexes[j];
-    }
-}
-
-/*
 void CoderBWT::decode(std::istream& input, std::ostream& output) {
   auto number = read_uint32_t(input);
   std::string input_string((std::istreambuf_iterator<char>(input)), std::istreambuf_iterator<char>());
@@ -104,4 +68,4 @@ void CoderBWT::decode(std::istream& input, std::ostream& output) {
     output << input_string[j];
     j = reverse_indexes[j];
   } 
-} */
+} 
