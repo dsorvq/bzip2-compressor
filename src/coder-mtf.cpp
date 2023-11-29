@@ -1,6 +1,6 @@
 #include "coder-mtf.hpp"
 
-void CoderMTF::encode(std::istream& input, std::ostream& output)  {
+void CoderMTF::encode(std::istream& input, std::ostream& output) {
   std::list<uint8_t> alphabet(alphabet_size);
   fill_alphabet(alphabet);
 
