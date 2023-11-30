@@ -24,7 +24,7 @@ auto read_uint32_t(std::istream& input) -> uint32_t {
 }
 
 void CoderBWT::encode(std::istream& input, std::ostream& output) {
-  std::string input_string((std::istreambuf_iterator<char>(input)), std::istreambuf_iterator<char>());
+  std::string input_string((std::istreambuf_iterator<char>(input)), {});
 
   input_string += input_string;// + '\0'; 
   auto suffix_arr = SuffixArray(input_string);
@@ -46,7 +46,7 @@ void CoderBWT::encode(std::istream& input, std::ostream& output) {
 
 void CoderBWT::decode(std::istream& input, std::ostream& output) {
   auto number = read_uint32_t(input);
-  std::string input_string((std::istreambuf_iterator<char>(input)), std::istreambuf_iterator<char>());
+  std::string input_string((std::istreambuf_iterator<char>(input)), {});
 
   std::vector<size_t> symbol_counters(alphabet_size, 0);
   for (size_t i = 0; i < input_string.size(); ++i) {
