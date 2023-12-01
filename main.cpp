@@ -7,7 +7,7 @@
 #include "include/coder-bwt.hpp"
 
 auto generate_random_string(int size) -> std::string {
-  std::string characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  std::string characters = " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
   std::random_device rd;
   std::mt19937 generator(rd());
   std::uniform_int_distribution<> distribution(0, characters.size() - 1);

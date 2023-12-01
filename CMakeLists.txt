@@ -1,13 +1,11 @@
 cmake_minimum_required (VERSION 3.0)
 project (bzip2)
 
-
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(CMAKE_CXX_FLAGS_DEBUG_INIT "-Wall -fsanitize=signed-integer-overflow,address -fno-omit-frame-pointer -g")
-set(CMAKE_CXX_FLAGS_RELEASE_INIT "-Wall -fsanitize=signed-integer-overflow,address -fno-omit-frame-pointer -g")
+add_compile_options(-Wall -g)
 
 add_compile_options()
 
@@ -21,6 +19,7 @@ add_executable(
     main.cpp 
     src/coder-mtf.cpp
     src/coder-bwt.cpp
+    src/utils.cpp
     src/suffix-array.cpp
 )
 target_link_libraries(${CMAKE_PROJECT_NAME} ${GTEST_LIBRARIES} pthread)
