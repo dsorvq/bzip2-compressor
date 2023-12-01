@@ -1,6 +1,7 @@
 #pragma once
 
 #include "coder.hpp"
+#include "utils.hpp"
 #include "suffix-array.hpp"
 
 class CoderBWT : public Coder {
