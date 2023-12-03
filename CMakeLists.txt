@@ -19,7 +19,8 @@ add_executable(
     main.cpp 
     src/coder-mtf.cpp
     src/coder-bwt.cpp
-    src/utils.cpp
+    src/coder-huffman.cpp
+    src/bits.cpp
     src/suffix-array.cpp
 )
 target_link_libraries(${CMAKE_PROJECT_NAME} ${GTEST_LIBRARIES} pthread)

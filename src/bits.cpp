@@ -1,4 +1,4 @@
-#include "utils.hpp"
+#include "bits.hpp"
 
 void put_uint32_t(uint32_t number, std::ostream& output) {
   uint64_t mask1 = (1 << 8) - 1;
@@ -22,4 +22,27 @@ auto read_uint32_t(std::istream& input) -> uint32_t {
     result |= (number_chars[3 - i] << (8 * i));
   }
   return result;
+}
+
+BitWriter::~BitWriter() {
+  if (buffer_index != 7) {
+    flush();
+  }
+}
+
+auto BitWriter::write(const std::vector<int>& bits) -> void {
+  for (size_t i = 0; i < bits.size(); ++i) {
+    buffer |= (bits[i] << buffer_index);
+    if (buffer_index == 0) {
+      flush();
+    } else {
+      --buffer_index;
+    }
+  }
+}
+
+auto BitWriter::flush() -> void {
+  output << buffer; 
+  buffer_index = 7;
+  buffer = 0;
 }
