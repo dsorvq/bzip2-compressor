@@ -2,9 +2,11 @@
 #include <random>
 #include <fstream>
 
+#include "coder-huffman.hpp"
 #include "include/coder.hpp"
 #include "include/coder-mtf.hpp"
 #include "include/coder-bwt.hpp"
+#include "bits.hpp"
 
 auto generate_random_string(int size) -> std::string {
   std::string characters = " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -89,6 +91,18 @@ TEST(CoderBWT_test, large_random_string) {
 }
 
 auto main(int argc, char* argv[]) -> int {
-  testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
+  //testing::InitGoogleTest(&argc, argv);
+  //return RUN_ALL_TESTS();
+
+  std::string original_string = "banana";
+  std::stringstream input(original_string);
+  std::stringstream output;
+
+  CoderHuffman coder;
+  coder.encode(input, output);
+
+  std::string resulting_string;
+  std::getline(output, resulting_string); 
+ 
+  std::cout << resulting_string << '\n';
 }
