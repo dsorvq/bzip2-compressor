@@ -23,3 +23,17 @@ private:
   std::ostream& output;
 };
 
+class BitReader {
+public:
+  BitReader(std::istream& intput_stream) : buffer {0}, buffer_index {7}, input{intput_stream} { };
+
+  // actually reads by bytes so overhead bits are wasted if not used by this
+  auto read() -> short;
+
+  auto flush() -> void;
+
+private:
+  char buffer;
+  size_t buffer_index;
+  std::istream& input;
+};

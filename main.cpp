@@ -90,19 +90,23 @@ TEST(CoderBWT_test, large_random_string) {
   EXPECT_EQ(original_string, encode_decode(coder, original_string));
 }
 
-auto main(int argc, char* argv[]) -> int {
-  //testing::InitGoogleTest(&argc, argv);
-  //return RUN_ALL_TESTS();
-
-  std::string original_string = "banana";
-  std::stringstream input(original_string);
-  std::stringstream output;
-
+TEST(CoderHuffman_test, small_random_string) {
+  int size = 10;
+  std::string original_string = generate_random_string(size);
   CoderHuffman coder;
-  coder.encode(input, output);
 
-  std::string resulting_string;
-  std::getline(output, resulting_string); 
- 
-  std::cout << resulting_string << '\n';
+  EXPECT_EQ(original_string, encode_decode(coder, original_string));
+}
+
+TEST(CoderHuffman_test, large_random_string) {
+  int size = 10000;
+  std::string original_string = generate_random_string(size);
+  CoderHuffman coder;
+
+  EXPECT_EQ(original_string, encode_decode(coder, original_string));
+}
+
+auto main(int argc, char* argv[]) -> int {
+  testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
 }
